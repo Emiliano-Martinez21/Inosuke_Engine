@@ -44,8 +44,8 @@ public:
    */
   HRESULT
     init(Device& device,
-      const std::string& textureName,
-      ExtensionType extensionType);
+          const std::string& textureName,
+          ExtensionType extensionType);
 
   /**
    * @brief Inicializa una textura creada desde memoria.
