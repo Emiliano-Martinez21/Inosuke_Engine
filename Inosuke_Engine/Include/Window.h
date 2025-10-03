@@ -1,32 +1,56 @@
 #pragma once
 #include "Prerequisites.h"
 
-class Window
-{
+/**
+ * Clase que encapsula una ventana de Windows para renderizado con Direct3D.
+ *
+ * Se encarga de crear y administrar el HWND asociado,
+ * además de almacenar dimensiones y nombre de la ventana.
+ */
+class Window {
 public:
-	Window() = default;
-	~Window() = default;
+  /// Constructor por defecto.
+  Window() = default;
 
-	HRESULT
-		init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc);
+  /// Destructor por defecto.
+  ~Window() = default;
 
-	void
-		update();
+  /**
+   * Inicializa la ventana de la aplicación.
+   *
+   * @param hInstance Instancia de la aplicación (WinMain).
+   * @param nCmdShow  Parámetro de visualización inicial (ej. SW_SHOW).
+   * @param wndproc   Función de procedimiento de ventana (WinAPI).
+   * @return          S_OK si fue exitoso; HRESULT en caso contrario.
+   */
+  HRESULT init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc);
 
-	void
-		render();
+  /// Placeholder para lógica de actualización de la ventana.
+  void update();
 
-	void
-		destroy();	
+  /// Placeholder para operaciones de renderizado relacionadas con la ventana.
+  void render();
+
+  /// Libera los recursos asociados a la ventana (HWND, instancia, etc.).
+  void destroy();
 
 public:
-	HWND m_hWnd = nullptr;
-	unsigned int m_width;
-	unsigned int m_height;
+  /// Handle de la ventana de Windows (HWND).
+  HWND m_hWnd = nullptr;
+
+  /// Ancho de la ventana en píxeles.
+  unsigned int m_width;
+
+  /// Alto de la ventana en píxeles.
+  unsigned int m_height;
 
 private:
-	HINSTANCE m_hInst = nullptr;
-	RECT m_rect;
-	//Nombre de la ventana 
-	std::string m_windowName = "Inosuke Engine";
+  /// Instancia de la aplicación asociada a la ventana.
+  HINSTANCE m_hInst = nullptr;
+
+  /// Rectángulo que define la posición y dimensiones de la ventana.
+  RECT m_rect;
+
+  /// Nombre por defecto de la ventana (título en la barra superior).
+  std::string m_windowName = "Inosuke Engine";
 };
