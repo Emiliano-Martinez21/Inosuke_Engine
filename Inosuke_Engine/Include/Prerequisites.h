@@ -89,3 +89,8 @@ enum ExtensionType {
   PNG = 1,  ///< Textura en formato PNG
   JPG = 2   ///< Textura en formato JPG
 };
+
+enum ShaderType {
+  VERTEX_SHADER = 0,
+  PIXEL_SHADER = 1
+};

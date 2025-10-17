@@ -42,8 +42,8 @@ public:
    */
   HRESULT
     init(Device& device,
-        const std::string& fileName,
-        std::vector<D3D11_INPUT_ELEMENT_DESC> Layout);
+      const std::string& fileName,
+      std::vector<D3D11_INPUT_ELEMENT_DESC> Layout);
 
   /**
    * @brief Actualiza parámetros internos de los shaders.
