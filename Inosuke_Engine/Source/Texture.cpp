@@ -4,19 +4,65 @@
 
 HRESULT
 Texture::init(Device& device,
-              const std::string& textureName,
-              ExtensionType extensionType) {
-  return E_NOTIMPL;
+  const std::string& textureName,
+  ExtensionType extensionType) {
+  if (!device.m_device) {
+    ERROR("Texture", "init", "Device is null.");
+    return E_POINTER;
+  }
+  if (textureName.empty()) {
+    ERROR("Texture", "init", "Texture name cannot be empty.");
+    return E_INVALIDARG;
+  }
+
+  HRESULT hr = S_OK;
+
+  switch (extensionType) {
+  case DDS: {
+    m_textureName = textureName + ".dds";
+
+    // Cargar textura DDS
+    hr = D3DX11CreateShaderResourceViewFromFile(
+      device.m_device,
+      m_textureName.c_str(),
+      nullptr,
+      nullptr,
+      &m_textureFromImg,
+      nullptr
+    );
+
+    if (FAILED(hr)) {
+      ERROR("Texture", "init",
+        ("Failed to load DDS texture. Verify filepath: " + m_textureName).c_str());
+      return hr;
+    }
+    break;
+  }
+
+  case PNG: {
+
+    break;
+  }
+  case JPG: {
+
+    break;
+  }
+  default:
+    ERROR("Texture", "init", "Unsupported extension type");
+    return E_INVALIDARG;
+  }
+
+  return hr;
 }
 
 HRESULT
 Texture::init(Device& device,
-              unsigned int width,
-              unsigned int height,
-              DXGI_FORMAT Format,
-              unsigned int BindFlags,
-              unsigned int sampleCount,
-              unsigned int qualityLevels) {
+  unsigned int width,
+  unsigned int height,
+  DXGI_FORMAT Format,
+  unsigned int BindFlags,
+  unsigned int sampleCount,
+  unsigned int qualityLevels) {
   if (!device.m_device) {
     ERROR("Texture", "init", "Device is null.");
     return E_POINTER;
