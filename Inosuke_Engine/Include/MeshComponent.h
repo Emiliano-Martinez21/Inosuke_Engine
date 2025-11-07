@@ -2,99 +2,46 @@
 #include "Prerequisites.h"
 //#include "ECS\Component.h"
 class DeviceContext;
+
 /**
  * @class MeshComponent
- * @brief Componente ECS que almacena la información de geometría (malla) de un actor.
- *
- * Un @c MeshComponent contiene los vértices e índices que describen la geometría de un objeto.
- * Forma parte del sistema ECS y se asocia a entidades como @c Actor.
- *
- * La malla incluye:
- * - Lista de vértices (posición, normal, UV, etc.).
- * - Lista de índices que definen las primitivas (triángulos, líneas).
- * - Contadores de vértices e índices.
+ * @brief Contiene los vértices e índices que forman una malla 3D.
+ * Se usa dentro de un sistema ECS como componente de geometría.
  */
-class
-  MeshComponent /*: public Component*/ {
+class MeshComponent /*: public Component*/ {
 public:
-  /**
-   * @brief Constructor por defecto.
-   *
-   * Inicializa el componente de malla con cero vértices e índices
-   * y lo registra como tipo @c MESH en el sistema ECS.
-   */
-  MeshComponent() : m_numVertex(0), m_numIndex(0)/*, Component(ComponentType::MESH)*/ {}
+  MeshComponent()
+    : m_numVertex(0), m_numIndex(0) /* Inicializa contadores a cero */ {}
+
+  virtual ~MeshComponent() = default; // Destructor simple
 
   /**
-   * @brief Destructor virtual por defecto.
+   * @brief Inicialización opcional de la malla.
+   * (vacío porque esta clase solo almacena datos)
    */
-  virtual
-    ~MeshComponent() = default;
+  void init(); /*override {}*/
 
   /**
-   * @brief Inicializa el componente de malla.
-   *
-   * Método heredado de @c Component.
-   * Puede usarse para reservar memoria o cargar datos en mallas derivadas.
+   * @brief Actualiza la malla (para animaciones o morphing).
+   * En este motor está vacío.
    */
-  void
-    init() /*override {}*/;
+  void update(float deltaTime) /*override {}*/;
 
   /**
-   * @brief Actualiza la malla.
-   *
-   * Método heredado de @c Component.
-   * Útil para actualizar animaciones de vértices, morphing u otros procesos relacionados.
-   *
-   * @param deltaTime Tiempo transcurrido desde la última actualización.
+   * @brief Render de la malla usando buffers externos.
+   * (realmente el dibujo lo hacen los Buffer + DeviceContext)
    */
-  void
-    update(float deltaTime)/* override {}*/;
+  void render(DeviceContext& deviceContext) /*override {}*/;
 
   /**
-   * @brief Renderiza la malla.
-   *
-   * Método heredado de @c Component.
-   * Normalmente se usaría junto con @c DeviceContext para dibujar buffers
-   * asociados a la malla.
-   *
-   * @param deviceContext Contexto del dispositivo para operaciones gráficas.
+   * @brief Libera la malla (aquí no libera nada porque no hay recursos GPU).
    */
-  void
-    render(DeviceContext& deviceContext) /*override {}*/;
-
-  /**
-   * @brief Libera los recursos asociados al componente de malla.
-   *
-   * Método heredado de @c Component.
-   * En implementaciones más complejas, puede liberar buffers de GPU.
-   */
-  void
-    destroy() /*override {}*/;
+  void destroy() /*override {}*/;
 
 public:
-  /**
-   * @brief Nombre de la malla.
-   */
-  std::string m_name;
-
-  /**
-   * @brief Lista de vértices de la malla.
-   */
-  std::vector<SimpleVertex> m_vertex;
-
-  /**
-   * @brief Lista de índices que definen las primitivas de la malla.
-   */
-  std::vector<unsigned int> m_index;
-
-  /**
-   * @brief Número total de vértices en la malla.
-   */
-  int m_numVertex;
-
-  /**
-   * @brief Número total de índices en la malla.
-   */
-  int m_numIndex;
+  std::string m_name;                    // Nombre opcional de la malla
+  std::vector<SimpleVertex> m_vertex;    // Lista de vértices (pos, uv, normal...)
+  std::vector<unsigned int> m_index;     // Lista de índices (triángulos)
+  int m_numVertex;                       // Total de vértices
+  int m_numIndex;                        // Total de índices
 };
