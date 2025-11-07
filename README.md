@@ -5,21 +5,21 @@ El motor implementa un pipeline de renderizado en tiempo real capaz de:
 
 Pipeline renderizado
 
-Crear ventana Win32
+1-Crear ventana Win32
 
-Inicializar DirectX 11 (Device, DeviceContext, SwapChain)
+2-Inicializar DirectX 11 (Device, DeviceContext, SwapChain)
 
-Configurar RenderTarget, DepthStencil y Viewport
+3-Configurar RenderTarget, DepthStencil y Viewport
 
-Compilar y aplicar Vertex/Pixel Shaders
+4-Compilar y aplicar Vertex/Pixel Shaders
 
-Cargar modelos OBJ básicos
+5-Cargar modelos OBJ básicos
 
-Crear y administrar buffers: Vertex / Index / Constant
+6-Crear y administrar buffers: Vertex / Index / Constant
 
-Aplicar texturas y Sampler State
+7-Aplicar texturas y Sampler State
 
-Renderizar un cubo texturizado en rotación
+8-Renderizar un cubo texturizado en rotación
 
           🔹 Arquitectura del proyecto
 | Módulo / Clase             | Función en el motor                                     |
