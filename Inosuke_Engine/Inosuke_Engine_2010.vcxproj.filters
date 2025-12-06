@@ -18,6 +18,9 @@
     <Filter Include="Source">
       <UniqueIdentifier>{e9bf0b21-860d-4625-8a21-de45c5d198cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\Patterns">
+      <UniqueIdentifier>{d300b316-75ae-4264-999f-bc101d4bf5b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Inosuke_Engine.cpp">
@@ -62,7 +65,7 @@
     <ClCompile Include="Source\BaseApp.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ModelLoader.cpp">
+    <ClCompile Include="Source\Model3D.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -123,11 +126,14 @@
     <ClInclude Include="Include\BaseApp.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Include\ModelLoader.h">
+    <ClInclude Include="Include\Model3D.h">
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Include\stb_image.h">
       <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\IResource.h">
+      <Filter>Include\Patterns</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

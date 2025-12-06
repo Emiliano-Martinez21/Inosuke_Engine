@@ -416,3 +416,5 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+Inosuke_Engine/lib/fbxlibs/libfbxsdk-mt.lib
+Inosuke_Engine/lib/fbxlibs/libfbxsdk-md.lib

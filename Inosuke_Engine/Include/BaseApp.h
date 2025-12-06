@@ -12,6 +12,7 @@
 #include "MeshComponent.h"
 #include "Buffer.h"
 #include "SamplerState.h"
+//#include "Model3D.h"
 
 /**
  * @brief Clase principal que administra todo el ciclo de vida de la aplicación.
