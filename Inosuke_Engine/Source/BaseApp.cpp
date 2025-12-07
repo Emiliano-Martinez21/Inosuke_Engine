@@ -126,6 +126,9 @@ BaseApp::init() {
 			("Failed to initialize ShaderProgram. HRESULT: " + std::to_string(hr)).c_str());
 		return hr;
 	}
+  
+	m_model = new Model3D("Gun.fbx", ModelType::FBX);
+	std::vector<MeshComponent>Gun = m_model->GetMeshes();
 
 	// Create vertex buffer
 	SimpleVertex vertices[] =
